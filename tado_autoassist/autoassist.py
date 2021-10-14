@@ -1,4 +1,5 @@
 import asyncio
+import logging
 
 import requests
 import urllib3
@@ -35,5 +36,10 @@ def create_http_session() -> requests.Session:
     return session
 
 
+def configure_logging():
+    logging.basicConfig()
+
+
 if __name__ == '__main__':
+    configure_logging()
     asyncio.run(run_autoassist())
