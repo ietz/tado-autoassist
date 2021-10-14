@@ -1,0 +1,3 @@
+from tado_autoassist.assistants.assistant import Assistant
+from tado_autoassist.assistants.geofencing import GeofencingAssistant
+from tado_autoassist.assistants.open_window import OpenWindowAssistant
