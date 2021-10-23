@@ -16,7 +16,11 @@ class GeofencingAssistant(Assistant):
 
     def check(self):
         mobile_device_states = self._tado.getMobileDevices()
-        home_devices = {Device(id=device['id'], name=device['name']) for device in mobile_device_states}
+        home_devices = {
+            Device(id=device['id'], name=device['name'])
+            for device in mobile_device_states
+            if device['location']['atHome']
+        }
 
         log_home_device_changes(home_devices, self.previously_home_devices)
 
@@ -29,6 +33,8 @@ class GeofencingAssistant(Assistant):
             else:
                 logger.info('Switching to away mode')
                 self._tado.setAway()
+
+        self.previously_home_devices = home_devices
 
 
 @dataclass(frozen=True, eq=True)
