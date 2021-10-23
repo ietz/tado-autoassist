@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 python-tado = "==0.12.0"
+dynaconf = "*"
 
 [dev-packages]
 
