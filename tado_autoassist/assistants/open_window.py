@@ -26,7 +26,7 @@ class OpenWindowAssistant(Assistant):
     def _get_zone(self, zone_id: int) -> Dict:
         """Get zone metadata (not state) from cache if available"""
         if zone_id not in self._zones_cache:
-            self._zones_cache = {zone.id: zone for zone in self._tado.getZones()}
+            self._zones_cache = {zone['id']: zone for zone in self._tado.getZones()}
 
         return self._zones_cache[zone_id]
 
