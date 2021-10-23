@@ -62,10 +62,10 @@ def configure_logging(log_file_name: Optional[str | PathLike[str]] = None):
 
 
 if __name__ == '__main__':
-    configure_logging(log_file_name=settings.log_file)
+    configure_logging(log_file_name=settings.get('log_file', None))
     asyncio.run(run_autoassist(
-        username=settings.username,
-        password=settings.password,
-        open_window_interval=settings.open_window_interval,
-        geofencing_interval=settings.geofencing_interval,
+        username=settings['username'],
+        password=settings['password'],
+        open_window_interval=settings.get('open_window_interval', None),
+        geofencing_interval=settings.get('geofencing_interval', None),
     ))
