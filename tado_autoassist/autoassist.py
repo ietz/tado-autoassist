@@ -1,6 +1,4 @@
 import asyncio
-import logging
-from os import PathLike
 from typing import Optional, List, Coroutine
 
 import requests
@@ -9,7 +7,6 @@ from PyTado.interface import Tado
 from requests.adapters import HTTPAdapter
 
 from tado_autoassist.assistants import OpenWindowAssistant, GeofencingAssistant
-from tado_autoassist.config import settings
 
 BACKOFF_FACTOR = 1.0
 
@@ -50,26 +47,3 @@ def create_http_session() -> requests.Session:
     session.mount('http://', adapter)
     session.mount('https://', adapter)
     return session
-
-
-def configure_logging(log_file_name: Optional[str | PathLike[str]] = None):
-    handlers = [logging.StreamHandler()]
-    if log_file_name is not None:
-        handlers.append(logging.FileHandler(log_file_name))
-
-    logging.basicConfig(
-        level=logging.INFO,
-        format='%(asctime)s.%(msecs)03d %(levelname)s %(module)s: %(message)s',
-        datefmt='%Y-%m-%d %H:%M:%S',
-        handlers=handlers,
-    )
-
-
-if __name__ == '__main__':
-    configure_logging(log_file_name=settings.get('log_file', None))
-    asyncio.run(run_autoassist(
-        username=settings['username'],
-        password=settings['password'],
-        open_window_interval=settings.get('open_window_interval', None),
-        geofencing_interval=settings.get('geofencing_interval', None),
-    ))
