@@ -19,7 +19,7 @@ geofencing_interval = 60.0
 # Comment out to disable file-based logging
 log_file = "autoassist.log"
 ```
-If you want to, you optionally can move the `password` out of the main `config.toml` into a separate `.secrets.toml`.
+If you want to, you optionally can move the `password` out of the main `settings.toml` into a separate `.secrets.toml`.
 
 For environment variable based configuration, prefix the config file setting names listed above with `TADO_AA_`, e.g.
 using `TADO_AA_PASSWORD` to specify the password.
