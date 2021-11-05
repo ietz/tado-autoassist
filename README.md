@@ -23,3 +23,15 @@ If you want to, you optionally can move the `password` out of the main `settings
 
 For environment variable based configuration, prefix the config file setting names listed above with `TADO_AA_`, e.g.
 using `TADO_AA_PASSWORD` to specify the password.
+
+## Docker Deployment [![Docker Image Size (latest semver)](https://img.shields.io/docker/image-size/ietz/tado-autoassist)](https://hub.docker.com/r/ietz/tado-autoassist)
+To deploy the autoassist with docker, use the [ietz/tado-autoassist](https://hub.docker.com/r/ietz/tado-autoassist) images.
+Either mount your `settings.toml` configuration file to `/app/settings.toml`, or set the config environment variables:
+```
+docker run -d \
+    -e 'TADO_AA_USERNAME=me@example.com' \
+    -e 'TADO_AA_PASSWORD=password' \
+    -e 'TADO_AA_OPEN_WINDOW_INTERVAL=10.0' \
+    -e 'TADO_AA_GEOFENCING_INTERVAL=60.0' \
+    ietz/tado-autoassist
+```
