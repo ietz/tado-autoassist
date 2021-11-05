@@ -1,0 +1,10 @@
+/.idea/
+/*.iml
+
+/**/__pycache__/
+
+/.git/
+/.gitignore
+
+/.secrets.toml
+/settings.toml
