@@ -19,7 +19,7 @@ class GeofencingAssistant(Assistant):
         home_devices = {
             Device(id=device['id'], name=device['name'])
             for device in mobile_device_states
-            if device['location']['atHome']
+            if device['location'] is not None and device['location']['atHome']
         }
 
         log_home_device_changes(home_devices, self.previously_home_devices)
